@@ -58,7 +58,7 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $manager->persist($album);
             $manager->flush();
-            $this->addFlash('success', 'Ajout okay');
+            $this->addFlash('success', 'A new album has been added to your collection!');
             return $this->redirectToRoute('adminIndexAlbum');
         }
 
