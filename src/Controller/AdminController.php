@@ -25,6 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AdminController extends AbstractController
 {
+
     /**
      * @Route("/admin", name="adminIndexAlbum")
      */
@@ -38,4 +39,27 @@ class AdminController extends AbstractController
         );
 
     }
+
+
+    /**
+     * @Route("/admin/create", name="adminAlbumCreate")
+     */
+
+    public function adminAlbumCreate(Request $request, EntityManagerInterface $manager)
+    {
+        $album = new Album();
+
+        $form = $this->createForm(AlbumType::class, $album);
+
+
+
+
+        return $this->render('admin/createAlbum.html.twig', [
+                'form' => $form->createView()
+            ]);
+
+    }
+
+
+
 }

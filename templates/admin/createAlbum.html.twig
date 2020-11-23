@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container">
+    <h1 class="ny-5 text-center">
+        Ajouter un site web
+    </h1>
+    
+
+    {{form_start(form)}}
+
+        <div class="row">
+            <div class="col-6">
+                {{form_row(form.name)}}
+            </div>
+            <div class="col-6">
+                {{form_row(form.imageFrontCover)}}
+            </div>
+
+        </div>
+
+    {{ form_end(form) }}
+
+
+</div>
+
+{% endblock %}
