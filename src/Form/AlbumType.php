@@ -7,15 +7,44 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+
+
 class AlbumType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('name')
-            ->add('imageFrontCover')
-            ->add('imageBackCover')
+            ->add('name', TextType::class, [
+                        'label' => 'Name',
+                        'attr' => [
+                                'placeholder' => 'Name of the album'
+                            ]
+                    ])
+            ->add('imageFrontCover', TextType::class, [
+                        'label' => 'Image front cover',
+                        'attr' => [
+                                'placeholder' => 'Image of the front cover'
+                            ]
+                    ])
+            ->add('imageBackCover', TextType::class, [
+                        'label' => 'Image back cover',
+                        'attr' => [
+                                'placeholder' => 'Image of the back cover'
+                            ]
+                    ])
+
+            ->add('submit', SubmitType::class, [
+                        'label' => 'Save'
+                    ])
         ;
+
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -52,6 +52,15 @@ class AdminController extends AbstractController
         $form = $this->createForm(AlbumType::class, $album);
 
 
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($album);
+            $manager->flush();
+            $this->addFlash('success', 'Ajout okay');
+            return $this->redirectToRoute('adminIndexAlbum');
+        }
 
 
         return $this->render('admin/createAlbum.html.twig', [
