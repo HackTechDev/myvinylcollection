@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="head text-center my-5">
+        <h3>Last added vinyls</h3>
+    </div>
+
+    <div class="albumListContainer">
+        {%for album in albums%}
+            <a href="{{path('displayAlbum',{'id':album.id})}}">{{album.id}}</a> {{album.name}} {{album.imageFrontCover}} {{album.name}} {{album.imageBackCover}}<br/>
+        {%endfor%}
+    </div>
+</div>
+
+
+{% endblock %}
