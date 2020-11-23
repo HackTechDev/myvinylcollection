@@ -70,5 +70,15 @@ class AdminController extends AbstractController
     }
 
 
+    /**
+     * @Route("/admin/album/{id}", name="adminAlbumDisplay")
+     */
+    public function adminAlbumDisplay(Album $album)
+    {
+        return $this->render('admin/adminDisplayAlbum.html.twig', [
+                'album' => $album
+            ]);
+    }
+
 
 }
