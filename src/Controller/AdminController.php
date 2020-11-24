@@ -63,7 +63,7 @@ class AdminController extends AbstractController
         }
 
 
-        return $this->render('admin/createAlbum.html.twig', [
+        return $this->render('admin/adminCreateAlbum.html.twig', [
                 'form' => $form->createView()
             ]);
 
@@ -92,4 +92,30 @@ class AdminController extends AbstractController
         $this->addFlash('warning', 'An album has been remove from your collection');
         return $this->redirectToRoute('adminIndexAlbum');
     }
+
+
+    /**
+     * @Route("/admin/album/{id}/edit", name="adminAlbumEdit")
+     */
+
+    public function adminAlbumEdit(EntityManagerInterface $manager, Album $album, Request $request)
+    {
+        $form = $this->createForm(AlbumType::class, $album);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($album);
+            $manager->flush();
+            $this->addFlash('success', 'The album has been correctly updated');
+            return $this->redirectToRoute('adminIndexAlbum');
+        }
+
+        return $this->render('admin/adminEditAlbum.html.twig', [
+                    'form' => $form->createView()
+                ]);
+    }
+
+
+
 }
