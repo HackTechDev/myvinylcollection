@@ -25,6 +25,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class HomeController extends AbstractController
 {
+
+
+
     /**
      * @Route("/home", name="home")
      */
@@ -79,6 +82,27 @@ class HomeController extends AbstractController
                         ]);
     }
 
+
+    /**
+     * @Route("/login", name="login")
+     */
+
+    public function login(AuthenticationUtils $util)
+    {
+        return $this->render("home/login.html.twig", [
+                "lastUserName" => $util->getLastUsername(),
+                "error" => $util->getLastAuthenticationError()
+            ]);
+    }
+
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+
+    public function logout()
+    {
+    }
 
 
 }
