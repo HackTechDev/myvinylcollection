@@ -81,4 +81,15 @@ class AdminController extends AbstractController
     }
 
 
+    /**
+     * @Route("/admin/album/{id}/remove", name="adminAlbumRemove")
+     */
+
+    public function adminAlbumRemove(EntityManagerInterface $manager, Album $album)
+    {
+        $manager->remove($album);
+        $manager->flush();
+        $this->addFlash('warning', 'An album has been remove from your collection');
+        return $this->redirectToRoute('adminIndexAlbum');
+    }
 }
