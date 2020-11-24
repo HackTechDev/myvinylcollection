@@ -13,6 +13,14 @@ use App\Repository\AlbumRepository;
 
 use App\Entity\Album;
 
+use App\Entity\User;
+
+use App\Form\RegistrationType;
+
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class HomeController extends AbstractController
@@ -40,5 +48,37 @@ class HomeController extends AbstractController
                 'album' => $album
             ]);
     }
+
+
+    /**
+     * @Route("/registration", name="registration")
+     */
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder): Response
+    {
+        $user = new User();
+        $form = $this->createForm(RegistrationType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            
+            $passwordCrypted = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($passwordCrypted);
+           
+
+            $user->setRoles("ROLE_USER");
+            
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('adminIndexAlbum');
+        }
+
+
+        return $this->render('home/registration.html.twig', [
+                                "form" => $form->createView()
+                        ]);
+    }
+
+
 
 }
