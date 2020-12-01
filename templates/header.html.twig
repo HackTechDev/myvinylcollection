@@ -15,6 +15,14 @@
                         Home
                     </a>
                 </div>
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{path('bands')}}">
+                        <i class="fas fa-home"></i>
+                        Band
+                    </a>
+                </div>
+
             {%endif%}
 
             {%if is_granted('ROLE_ADMIN')%}

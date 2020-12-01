@@ -11,7 +11,7 @@
 
     <div class="albumListContainer">
         {%for album in albums%}
-            <a href="{{path('displayAlbum',{'id':album.id})}}">{{album.id}}</a> {{album.name}} {{album.imageFrontCover}} {{album.name}} {{album.imageBackCover}}<br/>
+            <a href="{{path('displayAlbum',{'id':album.id})}}">{{album.id}}</a> {{album.name}} {{album.imageFrontCover}} <a href="{{path('displayBand', {'id':album.band.id})}}">{{album.band.name}}</a> <br/>
         {%endfor%}
     </div>
 </div>

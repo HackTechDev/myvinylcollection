@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Band{% endblock %}
+
+{% block body %}
+
+Band:<br/>
+
+{%for band in bands%}
+     <a href="{{path('displayBand', {'id':band.id})}}">{{band.name}}</a><br/>
+{%endfor%}
+
+
+{% endblock %}

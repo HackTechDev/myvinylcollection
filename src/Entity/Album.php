@@ -32,6 +32,11 @@ class Album
      */
     private $imageBackCover;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Band::class, inversedBy="albums")
+     */
+    private $band;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Album
     public function setImageBackCover(string $imageBackCover): self
     {
         $this->imageBackCover = $imageBackCover;
+
+        return $this;
+    }
+
+    public function getBand(): ?Band
+    {
+        return $this->band;
+    }
+
+    public function setBand(?Band $band): self
+    {
+        $this->band = $band;
 
         return $this;
     }
