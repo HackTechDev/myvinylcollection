@@ -6,6 +6,11 @@
     <h1 class="my-5 text-center">
         {{band.name }}
     </h1>
+
+Discography:<br/>
+{%for album in band.albums %}
+    <a href="{{path('displayAlbum',{'id':album.id})}}">{{album.id}}</a>{{album.name}}</a><br/>
+{%endfor%}
 </div>
 
 {% endblock %}
