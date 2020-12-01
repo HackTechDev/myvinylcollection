@@ -3,8 +3,8 @@
 
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{path('homepage')}}">
-                    <i class="fas fa-home"></i>
-                    Homepage
+                    <i class="fab fa-cotton-bureau"></i>
+                    Village
                 </a>
             </div>
 
@@ -20,7 +20,10 @@
             {%if is_granted('ROLE_ADMIN')%}
               <ul class="nav navbar-nav">
                   <li class="active">
-                      <a href="{{path('adminIndexAlbum')}}">My library</a>
+                      <a href="{{path('adminIndexAlbum')}}">
+                        <i class="fas fa-book-open"></i>
+                        My library
+                      </a>
                   </li>
               </ul>
             {%endif%}
@@ -28,19 +31,28 @@
             {%if not app.user%}
               <ul class="nav navbar-nav">
                   <li class="active">
-                      <a href="{{path('registration')}}">Registration</a>
+                      <a href="{{path('registration')}}">
+                        <i class="fas fa-book-open"></i>
+                        Registration
+                      </a>
                   </li>
               </ul>
 
               <ul class="nav navbar-nav">
                   <li class="active">
-                      <a href="{{path('login')}}">Login</a>
+                      <a href="{{path('login')}}">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                      </a>
                   </li>
               </ul>
             {%else%}
               <ul class="nav navbar-nav">
                   <li class="active">
-                      <a href="{{path('logout')}}">Logout</a>
+                      <a href="{{path('logout')}}">
+                          <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                      </a>
                   </li>
               </ul>
             {%endif%}
